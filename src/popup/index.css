@@ -1,0 +1,61 @@
+body {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+#save-tab-btn, #search-box-wrapper, .tab {
+  width: 400px;
+  border-top: 1px dotted #cfcfcf;
+}
+
+#save-tab-btn {
+  align-self: flex-start;
+  height: 50px;
+  background-color: #9decf5;
+}
+
+#search-box-wrapper {
+  height: 30px;
+  background-color: white;
+}
+
+#tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab, .summary-url-wrapper, .rmv-tab-btn {
+  height: 50px;
+}
+
+.tab {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+}
+
+
+.summary-url-wrapper, .summary, .url {
+  background-color: white;
+  width: 360px;
+}
+
+.summary-url-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.rmv-tab-btn {
+  text-align: center;
+  width: 40px;
+  background-color: #fc557c;
+}
+
+.summary, .url {
+  height: 25px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 3px;
+}

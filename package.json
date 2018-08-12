@@ -1,0 +1,27 @@
+{
+  "name": "ril",
+  "version": "1.0.0",
+  "description": "Save tabs you want to read later.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./build.sh"
+  },
+  "keywords": [
+    "read",
+    "tabs",
+    "later",
+    "productivity"
+  ],
+  "author": "wuyrush",
+  "license": "MIT",
+  "devDependencies": {
+    "browserify": "^16.2.2",
+    "web-ext": "^2.8.0"
+  },
+  "dependencies": {
+    "fuse.js": "^3.2.1",
+    "jquery": "^3.3.1",
+    "string-hash": "^1.1.3"
+  }
+}
