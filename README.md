@@ -1,10 +1,10 @@
-#ril
+# ril
 
 Save tabs you want to read later to avoid millions of tabs opened in your browser.
 
-##Updates
+## Updates
 
-###08/12/18
+### 08/12/18
 * MVP supporting core functionality without any key binding supports.
 * TODOs:
     1. Key binding to a)trigger the extension, b)select saved tab and open it and c)remove selected tab;
