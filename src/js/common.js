@@ -2,6 +2,12 @@
 
 /* Common utils shared by front-end and background scripts. */
 
+// for generic debugging purpose
+function onError(err) { console.error(err); }
+
+function getEpochSeconds() {
+  return Math.floor(Date.now() / 1000);
+}
 
 // Individual tab saved by user
 class Tab {

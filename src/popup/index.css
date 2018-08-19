@@ -4,20 +4,18 @@ body {
   overflow: auto;
 }
 
-#save-tab-btn, #search-box-wrapper, .tab {
+#search-box, .tab {
   width: 400px;
   border-top: 1px dotted #cfcfcf;
 }
 
-#save-tab-btn {
-  align-self: flex-start;
-  height: 50px;
-  background-color: #9decf5;
-}
-
-#search-box-wrapper {
+#search-box {
   height: 30px;
   background-color: white;
+}
+
+#search-box {
+/*  margin: 3px; */
 }
 
 #tabs {

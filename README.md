@@ -4,6 +4,12 @@ Save tabs you want to read later to avoid millions of tabs opened in your browse
 
 ## Updates
 
+### 08/18/18
+* Key bindings to display saved tabs(`Ctrl+Shift+Y`) and save tabs(`Ctrl+Y`);
+* Cache saved tabs in background to avoid hitting storage layer directly too often when retrieving saved tabs; Otherwise the load time of popup page with saved tabs can be long(~1-2s);
+
+Plues refactors to make the caching strategy work.
+
 ### 08/12/18
 * MVP supporting core functionality without any key binding supports.
 * TODOs:
