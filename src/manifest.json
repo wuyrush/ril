@@ -4,7 +4,7 @@
   "name": "ril",
   "description": "Save tabs you want to read later.",
   "background": {
-    "scripts": ["js/common.js", "js/background.js"]
+    "scripts": ["js/common.js", "js/browser-polyfill.js", "js/background.js"]
   },
   "browser_action": {
     "browser_style": true,
@@ -20,13 +20,15 @@
       "suggested_key": {
         "default": "Ctrl+Y",
         "mac": "MacCtrl+Y"
-      }
+      },
+      "description": "Save the current tab"
     },
     "_execute_browser_action": {
       "suggested_key": {
         "default": "Ctrl+Shift+Y",
         "mac": "MacCtrl+Shift+Y"
-      }
+      },
+      "description": "Toggle popup and display saved tabs"
     }
   }
 }

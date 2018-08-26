@@ -14,46 +14,27 @@ body {
   background-color: white;
 }
 
-#search-box {
-/*  margin: 3px; */
-}
-
 #tabs {
   display: flex;
   flex-direction: column;
 }
 
-.tab, .summary-url-wrapper, .rmv-tab-btn {
-  height: 50px;
-}
-
 .tab {
-  display: flex;
-  flex-direction: row;
-  background-color: white;
-}
-
-
-.summary-url-wrapper, .summary, .url {
-  background-color: white;
-  width: 360px;
-}
-
-.summary-url-wrapper {
+  height: 50px;
   display: flex;
   flex-direction: column;
 }
 
-.rmv-tab-btn {
-  text-align: center;
-  width: 40px;
-  background-color: #fc557c;
-}
-
 .summary, .url {
+  opacity: 1;
+  width: 400px;
   height: 25px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 3px;
+}
+
+.focused {
+  background-color: #ff8f5b;
 }

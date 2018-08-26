@@ -23,6 +23,12 @@ cp -r src/* addon
 cp -r src/js/* staging
 cp ./node_modules/jquery/dist/jquery.min.js staging
 cp ./node_modules/string-hash/index.js staging/string-hash.js
+# make the extension compatible with Chrome
+polyfill="./node_modules/webextension-polyfill/dist/browser-polyfill.min.js"
+# for frontend js
+cp $polyfill staging/browser-polyfill.js
+# for background scripts
+cp $polyfill addon/js/browser-polyfill.js
 
 # bundle dependencies with browserify
 browerify="node_modules/browserify/bin/cmd.js"
