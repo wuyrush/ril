@@ -2,6 +2,38 @@
 
 Save tabs you want to read later to avoid millions of tabs opened in your browser.
 
+## Installation
+
+### Firefox/Chrome extension store
+TODO
+
+### Build from source
+
+First we need to have Node and NPM installed. Recommended approach is via [NVM](https://github.com/creationix/nvm).
+
+```shell
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+command -v nvm
+nvm install node
+
+# start a new shell session, then run following:
+nvm use node
+```
+
+Then we can build `ril`:
+
+```shell
+git clone https://github.com/wuyrush/ril ~/ril
+cd ~/ril
+npm install && npm run build
+```
+
+The build process will generate a directory containing the extension bundle at `~/ril/addon`.
+
+Now we can add the extension to the browser(instructions for [FireFox](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Temporary_Installation_in_Firefox) and [Chrome](https://developer.chrome.com/extensions/getstarted#manifest) to load extensions locally).
+
+Enjoy!
+
 ## Updates
 
 ### 08/24/18
@@ -32,3 +64,4 @@ Plues refactors to make the caching strategy work.
     1. Option page for extension configuration;
     1. Sync saved tabs across browser instance where user logs in;
     1. Better UI design.
+
