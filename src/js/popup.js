@@ -65,7 +65,7 @@ function openTab(tabUrl) {
 function removeTab(tabUrl) {
   return browser.runtime.getBackgroundPage().then(page => {
     return page.removeTab(tabUrl);
-  }).catch(onError).then(res => {
+  }).then(res => {
     // Remove the tab from UI only if removal done on storage layer so that customer is not
     // misled when sth bad happens during removal.
     let tabId = hash(tabUrl);

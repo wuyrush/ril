@@ -6,7 +6,8 @@
 function onError(err) { console.error(err); }
 
 function getEpochSeconds() {
-  return Math.floor(Date.now() / 1000);
+  // faster hack: https://stackoverflow.com/q/4228356
+  return ~~(Date.now() / 1000);
 }
 
 // Individual tab saved by user
@@ -17,6 +18,10 @@ class Tab {
     this.created = created;     // mark when it is saved and categorize tabs when display
   }
 }
+
+// Used in the data structure representing tabs saved to the sync storage area, serving as the
+// separator between summary and created timestamp.
+const SEP = '|';
 
 console.debug('Common utils loaded');
 

@@ -8,6 +8,7 @@ set -x  # print trace of simple comands
 GREEN='\033[0;32m'
 NC='\033[0m'    # no color
 
+echo "${GREEN}BUILD STARTED${NC}"
 # always start a fresh build
 rm -rf addon
 rm -rf staging
@@ -38,4 +39,4 @@ $browerify staging/popup.js --noparse=staging/jquery.min.js -o addon/js/popup.js
 rm -rf staging
 
 # done
-echo "${GREEN}BUILD SUCCESS${NC}"
+echo "${GREEN}BUILD SUCCEEDED${NC}"

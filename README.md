@@ -36,6 +36,10 @@ Enjoy!
 
 ## Updates
 
+### 09/06/18
+* Sync the changes of tabs saved to browser's sync storage area. Note this essentially exploits the extension sync storage area, which has strict 100KB space limit. Thus it can be the case where there exist tabs failed to make it to the sync storage area. As a consequence, the data persisted in cache and local storage layer in different browser instances will diverge.
+* Refactors
+
 ### 08/24/18
 * Select saved tab via `Tab` key(Reverse selection via `Shift+Tab`). Note not all keyboards have arrow keys;
 * Open the selected tab via `Enter`;
