@@ -5,6 +5,7 @@
   "description": "Save tabs you want to read later.",
   "background": {
     "scripts": [
+      "fuse.min.js",
       "background.js"
     ]
   },
@@ -12,8 +13,8 @@
     "browser_style": true,
     "default_popup": "index.html",
     "default_icon": {
-      "16": "icons/page-16.png",
-      "32": "icons/page-32.png"
+      "16": "page-16.png",
+      "32": "page-32.png"
     }
   },
   "permissions": ["tabs", "storage"],
