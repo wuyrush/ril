@@ -5,7 +5,7 @@
   "description": "Save tabs you want to read later.",
   "background": {
     "scripts": [
-      "fuse.min.js",
+      "browser-polyfill.min.js",
       "background.js"
     ]
   },

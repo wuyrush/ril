@@ -59,10 +59,10 @@ module.exports = {
         flatten: true,
       },
       {
+        // we need this in background script, since we cannot use webpack to bundle the background
+        // script otherwise it will make variables we defined in background script inaccessible from
+        // frontend scripts.
         from: './node_modules/webextension-polyfill/dist/browser-polyfill.min.js',
-      },
-      {
-        from: './node_modules/fuse.js/dist/fuse.min.js',
       },
     ]),
     new HtmlWebPackPlugin({
@@ -72,7 +72,7 @@ module.exports = {
     }),
     // so that we don't need to manually reference assets in our html markup
     new HtmlWebpackIncludeAssetsPlugin({
-      assets: ['bulma.min.css', 'browser-polyfill.min.js', 'popup.js'],
+      assets: ['bulma.min.css', 'popup.js'],
       append: false,
       files: ['index.html']
     })

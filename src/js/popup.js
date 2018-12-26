@@ -8,25 +8,72 @@ import {
   Box,
 } from 'bloomer';
 
-// polyfill is done during webpack bundling time
+import Fuse from 'fuse.js';
+
+const KEY_TITLE = 'title',
+  KEY_URL = 'url',
+  KEY_TABS = 'tabs',
+  KEY_ERR = 'errors';
+
+var log = console;
+
+var browser = require('webextension-polyfill');
+if (typeof browser === 'undefined' || browser === null) {
+  throw 'Webextension polyfill not found! Have you included it using webpack?'
+} else if (typeof Fuse === 'undefined' || Fuse === null) {
+  throw 'Fuse not found. Unable to perform fuzzy searching. Have you included it using webpack?'
+}
 
 class Ril extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      savedTabs: null,  // TODO: fuzzysearch set data structure ?
+      query: '',
+      savedTabs: [],    // all the saved tabs
+      matchedTabs: [],  // result of fuzzy search on `query`
+      errors: [],       // errors to display to the user, if present
     };
+  }
 
-    console.log('Loading background stuff');
-    // load variable from extension background
+  componentDidMount() {
     browser.runtime.getBackgroundPage().then(
-      bp => console.log(bp.savedTabs),
-      err => console.log(`Error: ${error}`));
+      bg => {
+        this.background = bg;
+        return this.background.listTabs().then(
+          re => {
+            if (re === false) {
+              errMsg = 'Failed to retrieve saved tabs';
+              log.error(errMsg);
+              this.setState({ errors: [errMsg] });
+              return;
+            }
+            // otherwise the call succeeded
+            this.setState({ savedTabs: re[KEY_TABS], errors: re[KEY_ERR] });
+          }
+        )
+      },
+      err => {
+        let errMsg = 'Failed to load background page';
+        log.error(errMsg, err);
+        this.setState({ errors: [errMsg] });
+      }
+    ).catch(
+      err => {
+        let errMsg = 'Failed to retrieve saved tabs';
+        log.error(errMsg, err);
+        this.setState({ errors: [errMsg] });
+      }
+    );
   }
 
   render() {
     return (
       <Container style={{ margin: 0, width: 400 }}>
+        {this.state.errors.length > 0 &&
+          <div>
+            {errors}
+          </div>
+        }
         <Input
           type='text'
           placeholder='Search saved tabs ...'
@@ -34,9 +81,11 @@ class Ril extends Component {
         >
         </Input>
         <Container style={{ margin: 0, width: '100%' }}>
-          <Tab title='VVeryLongFooVeryLongFooVeryLongFooVeryLongFooVeryLongFooVeryLongFooVeryLongFooVeryLongFooVeryLongFooVeryLongFooVeryLongFooVeryLongFooeryLongFoo' url='http://yveryexample.com'/>
-          <Tab title='Foo' url='https://example.com'/>
-          <Tab title='Foo' url='https://example.com'/>
+        {
+          this.state.savedTabs.map(({title, url}) => (
+            <Tab title={title} url={url} />
+          ))
+        }
         </Container>
       </Container>
     );
