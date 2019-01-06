@@ -17,7 +17,7 @@ const KEY_TITLE = 'title',
 // the meaning of each attribute
 var options = {
   shouldSort: true,
-  includeScore: true,
+//  includeScore: true, individual result will key with "item" and "score" if specified
   threshold: 0.8,
   location: 0,
   distance: 150,
@@ -27,12 +27,12 @@ var options = {
     KEY_TITLE,
     KEY_URL,
   ],
-  id: KEY_URL,
+  // id: KEY_URL, result only contains ids if specified
 };
 
 var _savedTabs = {
   "https://google.com": "Google",
-  "htps://amazon.com": "Amazon",
+  "https://amazon.com": "Amazon",
   "https://baidu.com": "Baidu",
   "https://news.ycombinator.com/": "Hacker News",
 };
