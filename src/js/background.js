@@ -30,17 +30,13 @@ var options = {
   // id: KEY_URL, result only contains ids if specified
 };
 
-var _savedTabs = {
-  "https://google.com": "Google",
-  "https://amazon.com": "Amazon",
-  "https://baidu.com": "Baidu",
-  "https://news.ycombinator.com/": "Hacker News",
-};
+var _savedTabs = {};
 
 /*
  * All tab-related operations below return promise of boolean value indicating succeed / failure.
  *
  */
+
 function saveTab({title, url}) {
   // check whether the tab had already existed or not. Returns if so.
   if (_savedTabs.hasOwnProperty(url)) {
@@ -143,8 +139,26 @@ function listTabs() {
   });
 }
 
-function nonNull(obj) {
-  return [undefined, null].indexOf(obj) == -1;
+function handleSaveTab() {
+  // make sure we only capture the active tab in the current window, which user has focus on
+  browser.tabs.query({ active: true, currentWindow: true }).then(
+    activeTabs => {
+      log.debug('Got active and current tabs of length %d', activeTabs.length);
+      let tab = activeTabs[0];
+      return saveTab({ [KEY_URL]: tab.url, [KEY_TITLE]: tab.title });
+    },
+    err => {
+      log.error('Error when getting the current tab', err)
+    }
+  ).catch(err => log.error('Failed to save tab', err));
 }
+
+// Add handler for tab-saving events
+browser.commands.onCommand.addListener(cmd => {
+  if (cmd === 'ril-save-tab') {
+    log.debug('Save-tab event triggered');
+    handleSaveTab();
+  }
+});
 
 log.debug('Background script loaded')
