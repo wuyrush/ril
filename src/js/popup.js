@@ -42,6 +42,7 @@ class Ril extends Component {
     this.handleSelectTab = this.handleSelectTab.bind(this);
     this.handleOpenTab = this.handleOpenTab.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.handleDeleteTab = this.handleDeleteTab.bind(this);
   }
 
   handleKeyDown(event) {
@@ -54,6 +55,12 @@ class Ril extends Component {
       case 'Enter':
         log.debug('Open tab event', event.key);
         this.handleOpenTab();
+        break;
+      case 'd':
+        if (!event.ctrlKey) {
+          return;
+        }
+        this.handleDeleteTab()
     }
   }
 
@@ -113,6 +120,40 @@ class Ril extends Component {
         log.error('Error opening tab %s: %s', JSON.stringify(tabToOpen), JSON.stringify(err));
       }
     ).catch(err => log.error(err));
+  }
+
+  handleDeleteTab() {
+    let { matchedTabs, selectedTabIndex } = this.state;
+    // if the matched tab array is empty then we done here
+    if (matchedTabs.length === 0) {
+      return;
+    }
+    // otherwise remove the selected tab via its index
+    let tabToRemove = matchedTabs[selectedTabIndex];
+    let url = tabToRemove[KEY_URL];
+    this.background.deleteTab(url).then(
+      re => {
+        if (re === false) {
+          let errMsg = `tab with url ${url} is not removed from local storage`;
+          log.error(errMsg);
+          this.setState({ errors: [errMsg] });
+          return;
+        }
+        // tab removed from local storage and cache. Update UI state
+        let copy = [...matchedTabs];
+        copy.splice(selectedTabIndex, 1);
+        let newSelectedTabIndex = selectedTabIndex;
+        // edge case: remove the tailing tab
+        if (copy.length <= selectedTabIndex) {
+          newSelectedTabIndex = Math.max(0, selectedTabIndex - 1);
+        }
+        this.setState({ matchedTabs: copy, selectedTabIndex: newSelectedTabIndex });
+      },
+      err => {
+        log.error('Error in background script when removing tab with url ', url, err);
+        this.setState({ errors: [`Failed to remove the tab in background: ${JSON.stringify(err)}`] });
+      }
+    );
   }
 
   componentDidMount() {
