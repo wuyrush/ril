@@ -32,6 +32,16 @@ Now we can add the extension to the browser(instructions for [FireFox](https://d
 
 Enjoy!
 
+## Use
+
+* <kbd>Ctrl</kbd>+<kbd>Y</kbd> to save the active tab in your current browser window(aka the current tab you are browsing)
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Y</kbd> to open extension popup so that you can select, open, or search for saved tabs:
+  * <kbd>&uarr;</kbd> or <kbd>&darr;</kbd> to navigate through saved tabs. Selected tab is highlighted
+  * Type in search box to fuzzy-search saved tabs by title and URL
+  * <kbd>Enter</kbd> to open the selected tab. This removes the selected tab from saved tabs as well
+  * <kbd>Ctrl</kbd>+<kbd>D</kbd> to remove the selected tab from saved tabs. This will not open the selected tab
+
+
 ## Updates
 
 ### 01/13/19
