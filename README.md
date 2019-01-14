@@ -20,21 +20,35 @@ nvm install node
 nvm use node
 ```
 
-Then we can build `ril`:
+Then we can build the extension
 
 ```shell
-git clone https://github.com/wuyrush/ril ~/ril
-cd ~/ril
+git clone https://github.com/wuyrush/ril ~/ril && cd ~/ril
 npm install && npm run build
 ```
-
-The build process will generate a directory containing the extension bundle at `~/ril/addon`.
+The build process will generate a directory containing the extension bundle at `~/ril/dist`.
 
 Now we can add the extension to the browser(instructions for [FireFox](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Temporary_Installation_in_Firefox) and [Chrome](https://developer.chrome.com/extensions/getstarted#manifest) to load extensions locally).
 
 Enjoy!
 
 ## Updates
+
+### 01/13/19
+
+MVP!
+
+### 01/06/19
+
+Closed to MVP. Done implementation of extension popup logic(navigation in saved tabs, open selected tab, fuzzy search in saved tabs).
+
+### 12/25/18
+
+Done re-structuring backend logic - note WebExtension background scripts still don't play well with JS bundling tools like Webpack.
+
+### 12/17/18
+
+Mixed of JS code and jQuery made the extension hard to maintain in the long run, migrate the extension to React instead.
 
 ### 09/06/18
 * Sync the changes of tabs saved to browser's sync storage area. Note this essentially exploits the extension sync storage area, which has strict 100KB space limit. Thus it can be the case where there exist tabs failed to make it to the sync storage area. As a consequence, the data persisted in cache and local storage layer in different browser instances will diverge.
